@@ -1,4 +1,16 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "com.github.jengelman.gradle.plugins:shadow:2.0.2"
+    }
+}
+
+apply plugin: "com.github.johnrengelman.shadow"
 apply plugin: "java"
+
+defaultTasks = ["clean", "build", "shadowJar"]
 
 repositories {
     jcenter()
@@ -8,4 +20,10 @@ repositories {
 dependencies {
     compile "de.jflex:jflex:1.6.1"
     compile fileTree(dir: "tools/cup/lib", include: "*.jar")
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "jflexcup.Main"
+    }
 }
