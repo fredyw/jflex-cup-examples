@@ -3,3 +3,9 @@
 
 # IDEA
 .idea/
+*.iml
+*.iws
+*.ipr
+
+# Gradle
+.gradle/

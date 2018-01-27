@@ -7,4 +7,5 @@ repositories {
 
 dependencies {
     compile "de.jflex:jflex:1.6.1"
+    compile fileTree(dir: "tools/cup/lib", include: "*.jar")
 }
