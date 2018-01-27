@@ -1,14 +1,15 @@
 package jflexcup.generated;
 
 import java_cup.runtime.Symbol;
-import jflexcup.ExampleSymbols;
-
+import java.math.BigDecimal;
 %%
 
 // The class name of the lexer.
 %class ExampleLexer
+// Make this class public.
+%public
 %eofval{
-    return newToken(ExampleSymbols.EOF, null);
+    return symbol(ExampleSymbols.EOF);
 %eofval}
 // The current line number can be accessed with the variable yyline
 // and the current column number with the variable yycolumn.
@@ -31,10 +32,6 @@ import jflexcup.ExampleSymbols;
     private Symbol symbol(int type, Object value) {
         return new Symbol(type, yyline, yycolumn, value);
     }
-
-    private Symbol newToken(int id, Object value) {
-        return new Symbol(id, yyline + 1, yycolumn + 1, value);
-    }
 %}
 
 //  Macro Declarations
@@ -53,9 +50,11 @@ IdentifierOrKeyword = [:digit:]*[:jletter:][:jletterdigit:]*
 // these regular expressions will only be matched if the scanner is in
 // the start state YYINITIAL.
 <YYINITIAL> {
+    "." { return symbol(ExampleSymbols.DOT); }
+
     {IntegerLiteral} {
         System.out.print(yytext());
-        return symbol(ExampleSymbols.INTEGER_LITERAL, new Integer(yytext()));
+        return symbol(ExampleSymbols.INTEGER_LITERAL, new BigDecimal(yytext()));
     }
 
     {IdentifierOrKeyword} {

@@ -1,0 +1,39 @@
+package jflexcup.generated;
+
+import java.math.BigDecimal;
+
+parser code {:
+:};
+
+//---------------------------------------------------------------------//
+// List of terminals.
+//---------------------------------------------------------------------//
+// List of keywords.
+terminal KW_NAME, KW_NUMBER;
+
+// List of non-keywords.
+terminal DOT;
+terminal BigDecimal INTEGER_LITERAL;
+terminal String IDENT;
+
+//---------------------------------------------------------------------//
+// List of non-terminals.
+//---------------------------------------------------------------------//
+non terminal BigDecimal numeric_literal;
+
+//---------------------------------------------------------------------//
+// Grammar rules.
+//---------------------------------------------------------------------//
+numeric_literal ::=
+    INTEGER_LITERAL:r
+    {: RESULT = r; :}
+    ;
+
+ident_or_keyword ::=
+  IDENT:r
+  {: RESULT = r.toString(); :}
+  | KW_NAME:r
+  {: RESULT = r.toString(); :}
+  | KW_NUMBER:r
+  {: RESULT = r.toString(); :}
+  ;

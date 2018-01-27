@@ -8,5 +8,5 @@ Some examples for using [JFlex](http://jflex.de/) lexer and [CUP](http://www2.cs
 
 ## How to Run
 ```
-./run.sh
+./run.sh [test file]
 ```
