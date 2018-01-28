@@ -10,7 +10,7 @@ buildscript {
 apply plugin: "com.github.johnrengelman.shadow"
 apply plugin: "java"
 
-defaultTasks = ["clean", "build", "shadowJar"]
+defaultTasks = ["clean", "build", "test", "shadowJar"]
 
 repositories {
     jcenter()
@@ -20,6 +20,8 @@ repositories {
 dependencies {
     compile "de.jflex:jflex:1.6.1"
     compile fileTree(dir: "tools/cup/lib", include: "*.jar")
+
+    testCompile "junit:junit:4.12"
 }
 
 jar {

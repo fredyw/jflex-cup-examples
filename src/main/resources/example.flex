@@ -42,7 +42,13 @@ import java.math.BigDecimal;
 LineTerminator = \r|\n|\r\n
 WhiteSpace = {LineTerminator} | [ \t\f]
 IntegerLiteral = [:digit:][:digit:]*
+FLit1 = [0-9]+ \. [0-9]*
+FLit2 = \. [0-9]+
+FLit3 = [0-9]+
+Exponent = [eE] [+-]? [0-9]+
+DecimalLiteral = ({FLit1}|{FLit2}|{FLit3}) {Exponent}?
 IdentifierOrKeyword = [:digit:]*[:jletter:][:jletterdigit:]*
+QuotedIdentifier = \`(\\.|[^\\\`])*\`
 
 %%
 
@@ -54,6 +60,16 @@ IdentifierOrKeyword = [:digit:]*[:jletter:][:jletterdigit:]*
 
     {IntegerLiteral} {
         return symbol(ExampleSymbols.INTEGER_LITERAL, new BigDecimal(yytext()));
+    }
+
+    {DecimalLiteral} {
+        return symbol(ExampleSymbols.DECIMAL_LITERAL, new BigDecimal(yytext()));
+    }
+
+    {QuotedIdentifier} {
+        // Remove the quotes and trim whitespace.
+        String trimmedIdent = yytext().substring(1, yytext().length() - 1).trim();
+        return symbol(ExampleSymbols.IDENT, trimmedIdent);
     }
 
     {IdentifierOrKeyword} {

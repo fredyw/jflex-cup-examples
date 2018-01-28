@@ -14,7 +14,7 @@ terminal KW_NAME, KW_NUMBER;
 // List of non-keywords.
 terminal DOT;
 terminal BigDecimal INTEGER_LITERAL;
-// terminal BigDecimal DECIMAL_LITERAL;
+terminal BigDecimal DECIMAL_LITERAL;
 terminal String IDENT;
 terminal String UNEXPECTED_TOKEN;
 
@@ -52,10 +52,8 @@ name_statement ::=
 numeric_literal ::=
     INTEGER_LITERAL:r
     {: RESULT = r; :}
-    | INTEGER_LITERAL:r1 DOT INTEGER_LITERAL:r2
-    {: RESULT = new BigDecimal(r1 + "." + r2); :}
-    | DOT INTEGER_LITERAL:r
-    {: RESULT = new BigDecimal("." + r); :}
+    | DECIMAL_LITERAL:r
+    {: RESULT = r; :}
     ;
 
 variable_name ::=
