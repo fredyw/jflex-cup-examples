@@ -25,5 +25,6 @@ public class Main {
         validateArgs(args);
         ExampleParser parser = new ExampleParser(new ExampleLexer(new FileReader(new File(args[0]))));
         Object result = parser.parse().value;
+        System.out.println("Value: " + result);
     }
 }

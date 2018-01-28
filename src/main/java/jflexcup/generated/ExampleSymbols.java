@@ -12,6 +12,7 @@ public class ExampleSymbols {
   public static final int KW_NAME = 2;
   public static final int INTEGER_LITERAL = 5;
   public static final int error = 1;
+  public static final int UNEXPECTED_TOKEN = 7;
   public static final int IDENT = 6;
   public static final int EOF = 0;
   public static final int DOT = 4;
@@ -22,7 +23,8 @@ public class ExampleSymbols {
   "KW_NUMBER",
   "DOT",
   "INTEGER_LITERAL",
-  "IDENT"
+  "IDENT",
+  "UNEXPECTED_TOKEN"
   };
 }
 

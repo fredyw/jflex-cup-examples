@@ -10,3 +10,6 @@
 # Gradle
 .gradle/
 build/
+
+# CUP/JFlex
+*.java~

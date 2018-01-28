@@ -757,7 +757,7 @@ public class ExampleLexer implements java_cup.runtime.Scanner {
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1: 
-            { throw new Error("Illegal character <"+yytext()+">");
+            { return symbol(ExampleSymbols.UNEXPECTED_TOKEN, yytext());
             }
           case 6: break;
           case 2: 
@@ -765,12 +765,15 @@ public class ExampleLexer implements java_cup.runtime.Scanner {
             }
           case 7: break;
           case 3: 
-            { System.out.print(yytext());
-        return symbol(ExampleSymbols.INTEGER_LITERAL, new BigDecimal(yytext()));
+            { return symbol(ExampleSymbols.INTEGER_LITERAL, new BigDecimal(yytext()));
             }
           case 8: break;
           case 4: 
-            { System.out.print(yytext());
+            { if (yytext().equals("NUMBER")) {
+            return symbol(ExampleSymbols.KW_NUMBER, yytext());
+        } else if (yytext().equals("NAME")) {
+            return symbol(ExampleSymbols.KW_NAME, yytext());
+        }
         return symbol(ExampleSymbols.IDENT, yytext());
             }
           case 9: break;

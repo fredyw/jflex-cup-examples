@@ -53,12 +53,15 @@ IdentifierOrKeyword = [:digit:]*[:jletter:][:jletterdigit:]*
     "." { return symbol(ExampleSymbols.DOT); }
 
     {IntegerLiteral} {
-        System.out.print(yytext());
         return symbol(ExampleSymbols.INTEGER_LITERAL, new BigDecimal(yytext()));
     }
 
     {IdentifierOrKeyword} {
-        System.out.print(yytext());
+        if (yytext().equals("NUMBER")) {
+            return symbol(ExampleSymbols.KW_NUMBER, yytext());
+        } else if (yytext().equals("NAME")) {
+            return symbol(ExampleSymbols.KW_NAME, yytext());
+        }
         return symbol(ExampleSymbols.IDENT, yytext());
     }
 
@@ -69,5 +72,5 @@ IdentifierOrKeyword = [:digit:]*[:jletter:][:jletterdigit:]*
 // No token was found for the input so through an error.  Print out an
 //   Illegal character message with the illegal character that was found. */
 [^] {
-    throw new Error("Illegal character <"+yytext()+">");
+    return symbol(ExampleSymbols.UNEXPECTED_TOKEN, yytext());
 }

@@ -15,25 +15,45 @@ terminal KW_NAME, KW_NUMBER;
 terminal DOT;
 terminal BigDecimal INTEGER_LITERAL;
 terminal String IDENT;
+terminal String UNEXPECTED_TOKEN;
 
 //---------------------------------------------------------------------//
 // List of non-terminals.
 //---------------------------------------------------------------------//
+non terminal Object statement;
+non terminal String name_statement;
+non terminal BigDecimal number_statement;
 non terminal BigDecimal numeric_literal;
+non terminal String variable_name;
 
 //---------------------------------------------------------------------//
 // Grammar rules.
 //---------------------------------------------------------------------//
+start with statement;
+
+statement ::=
+    number_statement:r
+    {: RESULT = r; :}
+    | name_statement:r
+    {: RESULT = r; :}
+    ;
+
+number_statement ::=
+    KW_NUMBER numeric_literal:r
+    {: RESULT = r; :}
+    ;
+
+name_statement ::=
+    KW_NAME variable_name:r
+    {: RESULT = r; :}
+    ;
+
 numeric_literal ::=
     INTEGER_LITERAL:r
     {: RESULT = r; :}
     ;
 
-ident_or_keyword ::=
-  IDENT:r
-  {: RESULT = r.toString(); :}
-  | KW_NAME:r
-  {: RESULT = r.toString(); :}
-  | KW_NUMBER:r
-  {: RESULT = r.toString(); :}
-  ;
+variable_name ::=
+    IDENT:r
+    {: RESULT = r; :}
+    ;

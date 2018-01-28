@@ -1,1 +1,1 @@
-hello_world
+NAME hello_world
