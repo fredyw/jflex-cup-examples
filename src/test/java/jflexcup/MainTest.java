@@ -16,6 +16,8 @@ public class MainTest {
         assertEquals(new BigDecimal("123.45"), Main.parse(reader("NUMBER 123.45")));
         assertEquals("hello.world", Main.parse(reader("NAME hello.world")));
         assertEquals("hello.world", Main.parse(reader("NAME hello . world")));
+        assertEquals("hello.world", Main.parse(reader("NAME hello. world")));
+        assertEquals("hello.world", Main.parse(reader("NAME hello .world")));
         assertEquals(new BigDecimal(".45"), Main.parse(reader("NUMBER .45")));
         assertEquals(new BigDecimal(".45e1"), Main.parse(reader("NUMBER .45e1")));
         assertEquals(new BigDecimal(".45e-1"), Main.parse(reader("NUMBER .45e-1")));
