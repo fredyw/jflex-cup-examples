@@ -23,7 +23,7 @@ public class MainTest {
         assertEquals("123_world", Main.parse(reader("NAME 123_world")));
         assertEquals("hello.123_world", Main.parse(reader("NAME hello. 123_world")));
         assertEquals("hello.123_world", Main.parse(reader("NAME hello.`123_world`")));
-//        assertEquals("hello.123_world", Main.parse(reader("NAME hello.123_world")));
+        assertEquals("hello.123_world", Main.parse(reader("NAME hello.123_world")));
     }
 
     private static Reader reader(String str) {

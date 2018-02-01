@@ -31,9 +31,10 @@ public class ExampleParser extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\011\000\002\002\004\000\002\002\003\000\002\002" +
+    "\000\012\000\002\002\004\000\002\002\003\000\002\002" +
     "\003\000\002\004\004\000\002\003\004\000\002\005\003" +
-    "\000\002\005\003\000\002\006\003\000\002\006\005" });
+    "\000\002\005\003\000\002\006\003\000\002\006\005\000" +
+    "\002\006\004" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -41,14 +42,14 @@ public class ExampleParser extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\016\000\006\004\006\005\005\001\002\000\004\002" +
-    "\000\001\002\000\006\007\017\010\016\001\002\000\004" +
+    "\000\017\000\006\004\006\005\005\001\002\000\004\002" +
+    "\000\001\002\000\006\007\020\010\017\001\002\000\004" +
     "\011\013\001\002\000\004\002\011\001\002\000\004\002" +
     "\uffff\001\002\000\004\002\001\001\002\000\004\002\ufffd" +
-    "\001\002\000\006\002\ufffa\006\014\001\002\000\004\011" +
-    "\015\001\002\000\004\002\ufff9\001\002\000\004\002\ufffb" +
-    "\001\002\000\004\002\ufffc\001\002\000\004\002\ufffe\001" +
-    "\002" });
+    "\001\002\000\010\002\ufffa\006\015\011\014\001\002\000" +
+    "\004\002\ufff8\001\002\000\004\011\016\001\002\000\004" +
+    "\002\ufff9\001\002\000\004\002\ufffb\001\002\000\004\002" +
+    "\ufffc\001\002\000\004\002\ufffe\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -56,12 +57,12 @@ public class ExampleParser extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\016\000\010\002\006\003\007\004\003\001\001\000" +
-    "\002\001\001\000\004\005\017\001\001\000\004\006\011" +
+    "\000\017\000\010\002\006\003\007\004\003\001\001\000" +
+    "\002\001\001\000\004\005\020\001\001\000\004\006\011" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
-    "\002\001\001" });
+    "\002\001\001\000\002\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -236,6 +237,21 @@ class CUP$ExampleParser$actions {
 		String r2 = (String)((java_cup.runtime.Symbol) CUP$ExampleParser$stack.peek()).value;
 		 RESULT = new String(r1 + "." + r2); 
               CUP$ExampleParser$result = parser.getSymbolFactory().newSymbol("variable_name",4, ((java_cup.runtime.Symbol)CUP$ExampleParser$stack.elementAt(CUP$ExampleParser$top-2)), ((java_cup.runtime.Symbol)CUP$ExampleParser$stack.peek()), RESULT);
+            }
+          return CUP$ExampleParser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 9: // variable_name ::= IDENT IDENT 
+            {
+              String RESULT =null;
+		int r1left = ((java_cup.runtime.Symbol)CUP$ExampleParser$stack.elementAt(CUP$ExampleParser$top-1)).left;
+		int r1right = ((java_cup.runtime.Symbol)CUP$ExampleParser$stack.elementAt(CUP$ExampleParser$top-1)).right;
+		String r1 = (String)((java_cup.runtime.Symbol) CUP$ExampleParser$stack.elementAt(CUP$ExampleParser$top-1)).value;
+		int r2left = ((java_cup.runtime.Symbol)CUP$ExampleParser$stack.peek()).left;
+		int r2right = ((java_cup.runtime.Symbol)CUP$ExampleParser$stack.peek()).right;
+		String r2 = (String)((java_cup.runtime.Symbol) CUP$ExampleParser$stack.peek()).value;
+		 RESULT = new String(r1 + r2); 
+              CUP$ExampleParser$result = parser.getSymbolFactory().newSymbol("variable_name",4, ((java_cup.runtime.Symbol)CUP$ExampleParser$stack.elementAt(CUP$ExampleParser$top-1)), ((java_cup.runtime.Symbol)CUP$ExampleParser$stack.peek()), RESULT);
             }
           return CUP$ExampleParser$result;
 

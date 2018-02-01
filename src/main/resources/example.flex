@@ -48,6 +48,7 @@ FLit3 = [0-9]+
 Exponent = [eE] [+-]? [0-9]+
 DecimalLiteral = ({FLit1}|{FLit2}|{FLit3}) {Exponent}?
 IdentifierOrKeyword = [:digit:]*[:jletter:][:jletterdigit:]*
+IdentifierOrKeywordWithDot = \. {IdentifierOrKeyword}
 QuotedIdentifier = \`(\\.|[^\\\`])*\`
 
 %%
@@ -78,6 +79,10 @@ QuotedIdentifier = \`(\\.|[^\\\`])*\`
         } else if (yytext().equals("NAME")) {
             return symbol(ExampleSymbols.KW_NAME, yytext());
         }
+        return symbol(ExampleSymbols.IDENT, yytext());
+    }
+
+    {IdentifierOrKeywordWithDot} {
         return symbol(ExampleSymbols.IDENT, yytext());
     }
 

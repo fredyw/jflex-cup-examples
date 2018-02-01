@@ -61,4 +61,6 @@ variable_name ::=
     {: RESULT = r; :}
     | IDENT:r1 DOT IDENT:r2
     {: RESULT = new String(r1 + "." + r2); :}
+    | IDENT:r1 IDENT:r2
+    {: RESULT = new String(r1 + r2); :}
     ;
