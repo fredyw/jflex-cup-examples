@@ -83,7 +83,9 @@ QuotedIdentifier = \`(\\.|[^\\\`])*\`
     }
 
     {IdentifierOrKeywordWithDot} {
-        return symbol(ExampleSymbols.IDENT, yytext());
+        String text = yytext();
+        yypushback(text.length() - 1);
+        return symbol(ExampleSymbols.DOT, yytext());
     }
 
     {WhiteSpace} { /* Ignore */ }
@@ -91,7 +93,8 @@ QuotedIdentifier = \`(\\.|[^\\\`])*\`
 
 
 // No token was found for the input so through an error.  Print out an
-//   Illegal character message with the illegal character that was found. */
+// Illegal character message with the illegal character that was found. */
 [^] {
+    System.out.println("wtf: " + yytext());
     return symbol(ExampleSymbols.UNEXPECTED_TOKEN, yytext());
 }
